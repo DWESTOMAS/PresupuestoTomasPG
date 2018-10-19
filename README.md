@@ -1,2 +1,0 @@
-# PresupuestoTomasPG
-Preparacion del repositorio
