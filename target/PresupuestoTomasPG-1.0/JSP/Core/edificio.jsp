@@ -3,19 +3,19 @@
     Created on : 18-oct-2018, 12:02:28
     Author     : tomlu
 --%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/CSS/estilo.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/estilo.css" media="screen" />
         <title>Formulario continente</title>
     </head>
     <body>
         <%@include file="/INC/cabecera.inc"%>
         <div id="FormularioContinente">
-            <form name="formuEdificio" method="Post" action="./Edificio">
+            <form name="formuEdificio" method="Post" action="${pageContext.request.contextPath}/Edificio">
                         <p><label for="tipo">Tipo de edificio: </label><select name="tipoEdi" id="tipoEdi">
                                 <option value="piso">piso</option>
                                 <option value="casa">casa</option>

@@ -74,23 +74,13 @@ public class Contenido extends HttpServlet {
         contenido.setDanosAccidentales(asegurado);
         contenido.setFranquicia(cantidadFranquicia);
         contenido.setTotal(CalcularCuota.calcularContenido(contenido));
-        StringBuilder cadena =new StringBuilder();
-        cadena.append("<div id=\"contenido\" class=\"contenido\"><label>Contrato de contenido</label><p>Cobertura de daños accidentales: ");
-        cadena.append((contenido.isDanosAccidentales())? "Si":"No");
-        cadena.append("</p><p>La cantidad asegurada es: ");
-        cadena.append(contenido.getCantidadAsegurada());
-        cadena.append("</p><p>El valor de la franquicia es: ");
-        cadena.append(contenido.getFranquicia());
-        cadena.append("</p><p>El total del contenido es: <strong>");
-        DecimalFormat df = new DecimalFormat("###,##0.00");
-        cadena.append(df.format(contenido.getTotal()));
-        cadena.append("€</strong></p></div>");
-        String convertirCadena="";
-        convertirCadena+=cadena;
-        contenido.setCadenaHtml(convertirCadena);
+        
+      //  contenido.setCadenaHtml(convertirCadena);
         HttpSession miSesion=request.getSession();
         miSesion.setAttribute("contenido", contenido);
-        request.getRequestDispatcher("./JSP/vista.jsp").forward(request, response);
+        String url=(String) miSesion.getAttribute("direccion");
+        url+="vista.jsp";
+        request.getRequestDispatcher(url).forward(request, response);
         
         
         

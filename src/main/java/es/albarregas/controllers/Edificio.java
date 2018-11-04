@@ -85,34 +85,20 @@ public class Edificio extends HttpServlet {
             Double valorMerca=Double.parseDouble(request.getParameter("valorMercado"));
             continente.setValorMercado(valorMerca);
             continente.setValorCuota(CalcularCuota.calcularContinente(continente));
-            StringBuilder cadenaHtml=new StringBuilder();
-            //-----es la construccion de la cadena html a visualizar
-            cadenaHtml.append("<div id=\"continente\" class=\"contenido\"><legend><strong>Contrato continente</strong></legend><p>El tipo de edificio es: ");
-            cadenaHtml.append(continente.getTipoEdificio());
-            cadenaHtml.append("</p><p>Numero de habitaciones: ");
-            cadenaHtml.append(continente.getNumHabi());
-            cadenaHtml.append("</p><p>Fecha de construccion considerada: ");
-            cadenaHtml.append(continente.getFechaConstru());
-            cadenaHtml.append("</p><p>El tipo de construcción es: ");
-            cadenaHtml.append(continente.getTipoConstruccion());
-            cadenaHtml.append("</p><p>El valor de mercado: ");
-            cadenaHtml.append(continente.getValorMercado());
-            cadenaHtml.append("</p><p>El total del valor del continente es: <strong>");
-            DecimalFormat df = new DecimalFormat("###,##0.00");
-            cadenaHtml.append(df.format(continente.getValorCuota()));
-            cadenaHtml.append(" €</strong></p></div>");
-            String cadena="";
-            cadena+=cadenaHtml;
-            continente.setCadenaVisualizar(cadena);
+            
+           // continente.setCadenaVisualizar(cadena);
             
             // ahora paso  a session el objeto
             miSesion.setAttribute("continente", continente);
             // y ahora compruebo si se ha marcado el contenido
             // EleccionBean objeto=(EleccionBean) miSesion.getAttribute("tipoSeguro");
+            String url=(String) miSesion.getAttribute("direccion");
             if((objeto.isContenido())){
-                request.getRequestDispatcher("./JSP/contenido.jsp").forward(request, response);
+                url+="contenido.jsp";
+                request.getRequestDispatcher(url).forward(request, response);
             }else{
-                request.getRequestDispatcher("./JSP/vista.jsp").forward(request, response);
+                url+="vista.jsp";
+                request.getRequestDispatcher(url).forward(request, response);
             }
             
             

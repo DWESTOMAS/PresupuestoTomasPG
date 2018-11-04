@@ -16,7 +16,7 @@ public class ContenidoBean implements Serializable {
     private boolean danosAccidentales;
     private String franquicia;
     private double total;
-    private String cadenaHtml;
+    
 
     public double getCantidadAsegurada() {
         return cantidadAsegurada;
@@ -50,13 +50,7 @@ public class ContenidoBean implements Serializable {
         this.total = total;
     }
 
-    public String getCadenaHtml() {
-        return cadenaHtml;
-    }
-
-    public void setCadenaHtml(String cadenaHtml) {
-        this.cadenaHtml = cadenaHtml;
-    }
+ 
     
     
     

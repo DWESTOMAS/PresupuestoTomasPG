@@ -6,6 +6,7 @@
 package es.albarregas.beans;
 
 import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
 
 /**
  *
@@ -19,7 +20,7 @@ public class EdificioBean implements Serializable{
     private String tipoConstruccion;
     private double valorMercado;
     private double valorCuota;//Es el total de lo que cuesta el seguro porque hay que pasarlo, y lo añado a session
-    private String cadenaVisualizar;//Es la cadena a visualizar en la vista
+    
 
     public String getTipoEdificio() {
         return tipoEdificio;
@@ -69,14 +70,7 @@ public class EdificioBean implements Serializable{
         this.valorCuota = valorCuota;
     }
 
-    public String getCadenaVisualizar() {
-        return cadenaVisualizar;
-    }
-
-    public void setCadenaVisualizar(String cadenaVisualizar) {
-        this.cadenaVisualizar = cadenaVisualizar;
-    }
-    
+   
     
     
     

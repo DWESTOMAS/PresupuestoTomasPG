@@ -1,0 +1,7 @@
+es\albarregas\controllers\Edificio.class
+es\albarregas\controllers\Eleccion.class
+es\albarregas\beans\EleccionBean.class
+es\albarregas\models\CalcularCuota.class
+es\albarregas\beans\ContenidoBean.class
+es\albarregas\controllers\Contenido.class
+es\albarregas\beans\EdificioBean.class

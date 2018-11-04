@@ -67,17 +67,60 @@ public class Eleccion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+       
         EleccionBean tipoSeguro=new EleccionBean();
         
         tipoSeguro.setContenido(false);
         tipoSeguro.setContinente(Boolean.FALSE);
-        
+        HttpSession miSesion=null;
+        //Declaro la variable para que pueda añadir una ruta u otra;
         //aqui creo mi sesion--------------------------------------------------------
         
-        HttpSession misesion=request.getSession();
+       // HttpSession misesion=request.getSession();
+      
+      // url+=((request.getParameter("oculto")).equals("jsp"))? "./JSP/Estandar/":"./JSP/Core/";
        
-        String url="";
+       String url="";
+            url+=((request.getParameter("oculto")).equals("jsp"))? "/JSP/Estandar/":"/JSP/Core/";
+       String urlSesion=url;
+       if(request.getParameter("edificio")==null && request.getParameter("contenido")==null){
+       
+            url+="index.jsp";
+       }else{
+           miSesion=request.getSession();
+       
+            if(request.getParameter("edificio")!=null && request.getParameter("contenido")!=null){
+                         
+                         tipoSeguro.setContinente(Boolean.TRUE);
+                         tipoSeguro.setContenido(Boolean.TRUE);
+                         miSesion.setAttribute("tipoSeguro", tipoSeguro);
+                         miSesion.setAttribute("direccion", urlSesion);
+                         url+="edificio.jsp";
+           //como para todos los demás opciones hay que crear sesion pues hago else creo la sesión y por
+           //cada opción guardamos los datos en sesión también el map de la sesión guardaré si es estandar o jslt
+       
+            } else if(request.getParameter("edificio")==null && request.getParameter("contenido")!=null){
+                        tipoSeguro.setContinente(false);
+                        tipoSeguro.setContenido(Boolean.TRUE);
+                        miSesion.setAttribute("tipoSeguro", tipoSeguro);
+                        miSesion.setAttribute("direccion", urlSesion);
+                        url+="contenido.jsp";
+                        
+            }else if(request.getParameter("edificio")!=null && request.getParameter("contenido")==null){
+                            tipoSeguro.setContinente(Boolean.TRUE);
+                            tipoSeguro.setContenido(false);
+                            miSesion.setAttribute("tipoSeguro", tipoSeguro);
+                            miSesion.setAttribute("direccion", urlSesion);
+                            url+="edificio.jsp";
+                            
+            
+            }
+       
+       }
+       
+        request.getRequestDispatcher(url).forward(request,response);
+       
+       /* String url="";
         
         if(request.getParameter("edificio")!=null && request.getParameter("contenido")!=null){
                          
@@ -114,7 +157,7 @@ public class Eleccion extends HttpServlet {
          
               //  request.getRequestDispatcher("./JSP/edificio.jsp").forward(request, response);
         
-        
+        */
     }
 
     /**
